@@ -1,3 +1,9 @@
+## About
+
+This template sets up a Next 13 app directory project with Sanity at the path /studio. It includes files to configure live preview. It uses SASS for styling and also contains a few helpful Sanity objects and plugins such as the Singleton plugin for Sanity.
+
+This template is adapted from Aron Hafner's (@hafffe). [`Their template`](https://github.com/hafffe/nextjs-sanity-template) contains a comprehensive configuration that uses Tailwind for styling. The purpose of this template is to provide a more bare-bones solution that is quicker to customize.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

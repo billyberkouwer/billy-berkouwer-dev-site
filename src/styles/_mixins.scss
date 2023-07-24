@@ -1,0 +1,31 @@
+@mixin unstyle-button {
+    background-color: transparent;
+    border-width: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
+    color: $black;
+}
+
+@mixin section-height-100 {
+    height: calc(75vh - 2em);
+    height:  calc(75dvh - 2em);
+
+    @include md {
+        height: calc(100vh - 4em);
+        height: calc(100vh - 4em);
+    }
+}
+
+@mixin section-header {
+    height:  calc(75dvh - 1em - 100px);
+    height: calc(75vh - 1em - 100px);
+
+    @include md {
+        height: calc(100vh - 2em - 100px);
+        height: calc(100dvh - 2em - 100px);
+    }
+}

@@ -1,0 +1,14 @@
+@import 'normalize';
+@import '_helpers.scss';
+@import '_fonts.scss';
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    color: $black;
+    background-color: $white;
+}
