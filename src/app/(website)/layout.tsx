@@ -1,3 +1,5 @@
+import ThemeProvider from '@/components/Global/ThemeProvider';
+import Navbar from '@/components/Navbar/Navbar';
 import '@/styles/global.scss';
 
 export default function RootLayout({
@@ -9,7 +11,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

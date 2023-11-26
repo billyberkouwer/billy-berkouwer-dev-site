@@ -10,6 +10,10 @@
     color: $black;
 }
 
+@mixin mondwest {
+    font-family: '__Mondwest_e431c9', '__Mondwest_Fallback_e431c9';
+}
+
 @mixin section-height-100 {
     height: calc(75vh - 2em);
     height:  calc(75dvh - 2em);

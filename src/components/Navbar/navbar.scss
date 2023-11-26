@@ -1,0 +1,42 @@
+@import '@/styles/_helpers.scss';
+
+.container__navbar {
+    @include mondwest;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    color: $black;
+
+    :last-child {
+        border-right: none;
+    }
+}
+
+.link__navbar {
+    font-size: 2rem;
+    padding: 0.5rem 2rem;
+    transition: opacity $fast;
+    border-right: 0.5px solid $black;
+    opacity: 0.5;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+// DARK THEME
+.container__navbar {
+    &.dark-theme {
+        .link__navbar {
+            color: $white;
+            border-right: 0.5px solid $white;
+        }
+
+        :last-child {
+            border-right: none;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 "use client"
 
 import '@/styles/global.scss';
-import { LabGrotesque } from './font/font';
+import { Mondwest } from './font/font';
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={LabGrotesque.className}>
+    <html lang="en" className={Mondwest.className}>
       <body>
         {children}
       </body>
