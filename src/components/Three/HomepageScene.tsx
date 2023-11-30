@@ -6,13 +6,12 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { MutableRefObject, useEffect, useRef } from 'react';
 import { SkeletonHelper, Object3D, Object3DEventMap, SkinnedMesh, Bone, Vector3, Mesh, Material, Shader } from "three"
 import { createNoise4D } from "simplex-noise";
-import Plant from "./Plant-2-bake-bones"
 
 export default function HomepageScene() {
     const lightRef = useRef<Object3D<Object3DEventMap>>() as MutableRefObject<Object3D<Object3DEventMap>>;
     const noise = createNoise4D();
     const { scene, clock } = useThree();
-    const gltf = useGLTF(process.env.NODE_ENV === 'production' ? 'https://billy-berkouwer-dev.vercel.app/Plant-2-bake-bones.gltf' : '/Plant-2-bake-bones.gltf');
+    const gltf = useGLTF("/gltf/plant-2-bake-bones.gltf");
     const bonesRef = useRef<Bone[]>();
     const bonesRestPos = useRef<{ x: number, y: number, z: number }[]>();
     const bonesRestRot = useRef<{ x: number, y: number, z: number }[]>();
