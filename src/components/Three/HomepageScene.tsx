@@ -1,11 +1,11 @@
 'use client'
 
-import { adjust, lerp } from '@/lib/utils';
-import { OrbitControls, useGLTF, useHelper } from '@react-three/drei'
-import { Euler, PointLightProps, useFrame, useThree } from '@react-three/fiber';
+import { adjust } from '@/lib/utils';
+import { OrbitControls, useGLTF } from '@react-three/drei'
+import { useFrame, useThree } from '@react-three/fiber';
 import { MutableRefObject, useEffect, useRef } from 'react';
-import { PointLightHelper, SkeletonHelper, Object3D, Object3DEventMap, SkinnedMesh, Skeleton, Bone, Vector3, Mesh, Matrix4, Quaternion } from "three"
-import { createNoise3D, createNoise4D } from "simplex-noise";
+import { SkeletonHelper, Object3D, Object3DEventMap, SkinnedMesh, Bone, Vector3 } from "three"
+import { createNoise4D } from "simplex-noise";
 import Plant from "./Plant-2-bake-bones"
 
 export default function HomepageScene() {
@@ -49,17 +49,25 @@ export default function HomepageScene() {
         const bonesPos = bonesRestPos.current;
         const bonesRot = bonesRestRot.current;
         const maxMinCoords = bonesMaxMinCoords.current;
+
         if (bones && bonesPos && maxMinCoords && bonesRot) {
             bones.forEach((bone, i) => {
                 const bonePosFactor = adjust(bone.getWorldPosition(new Vector3()).y, maxMinCoords.min, maxMinCoords.max, 0, 1) + 2.5;
                 const displacementFactor = bonePosFactor / 100;
-                const currentBoneRot = bonesRot[i] as {x: number, y: number, z: number};
+                const currentBoneRot = bonesRot[i];
                 const time = clock.elapsedTime / 10;
                 const noiseScale = 1;
-                const noiseValX = noise(((currentBoneRot.x * noiseScale + time)), ((currentBoneRot.y * noiseScale + time)), ((currentBoneRot.z * noiseScale + time)), time) * displacementFactor
-                const noiseValY = noise(((currentBoneRot.x * noiseScale + time)), ((currentBoneRot.y * noiseScale + time)), ((currentBoneRot.z * noiseScale + time)), time) * displacementFactor
-                const noiseValZ = noise(((currentBoneRot.x * noiseScale + time)), ((currentBoneRot.y * noiseScale + time)), ((currentBoneRot.z * noiseScale + time)), time) * displacementFactor
-                const newRotation = {x: currentBoneRot.x + noiseValX, y: currentBoneRot.y + noiseValY, z: currentBoneRot.z +  noiseValZ};
+                const noiseVal = noise(
+                    ((currentBoneRot.x * noiseScale + time)), 
+                    ((currentBoneRot.y * noiseScale + time)), 
+                    ((currentBoneRot.z * noiseScale + time)), 
+                    time) * displacementFactor;
+
+                const newRotation = {
+                    x: currentBoneRot.x + noiseVal, 
+                    y: currentBoneRot.y + noiseVal, 
+                    z: currentBoneRot.z +  noiseVal
+                };
                 bone.rotation.set(newRotation.x, newRotation.y, newRotation.z)
                 bone.position.set(bonesPos[i].x, bonesPos[i].y, bonesPos[i].z)
                 bone.matrixWorldNeedsUpdate = true;
