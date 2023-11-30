@@ -10,6 +10,7 @@
     width: 100%;
     padding: 1rem 0;
     color: $black;
+    z-index: 1;
 
     :last-child {
         border-right: none;
@@ -19,11 +20,18 @@
 .link__navbar {
     font-size: 2rem;
     padding: 0.5rem 2rem;
-    transition: opacity $fast;
     border-right: 0.5px solid $black;
-    opacity: 0.5;
+    list-style-type: none;
+
+    a {
+        transition: color $fast;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
     &:hover {
-        opacity: 1;
+        a {
+            color: rgba(0, 0, 0, 1);
+        }
     }
 }
 
@@ -31,8 +39,18 @@
 .container__navbar {
     &.dark-theme {
         .link__navbar {
-            color: $white;
-            border-right: 0.5px solid $white;
+            border-right: 0.5px solid rgba(255, 255, 255, 0.5);
+
+            a {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+
+            &:hover {
+                a {
+                    color: rgba(255, 255, 255, 1);
+                }
+            }
         }
 
         :last-child {
