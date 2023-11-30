@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidateTag } from 'next/cache'
+
+export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
     const route = request.nextUrl.searchParams.get('route');
