@@ -1,3 +1,49 @@
+@import "@/styles/_helpers.scss";
+
 .wrapper__full-h {
     height: 100vh;
+}
+
+.scene-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    transition: opacity $slow;
+    z-index: 1;
+    pointer-events: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.title {
+    margin: 0;
+    position: fixed;
+    font-size: 8rem;
+    z-index: 1;
+    color: rgba(236, 236, 236);
+    mix-blend-mode: difference;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 500;
+    transition: opacity $slow;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.three-canvas {
+    transition: opacity $slow;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
 }

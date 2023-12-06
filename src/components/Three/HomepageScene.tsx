@@ -3,9 +3,25 @@
 import { adjust } from '@/lib/utils';
 import { OrbitControls, useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { MutableRefObject, Suspense, useEffect, useRef } from 'react';
 import { SkeletonHelper, Object3D, Object3DEventMap, SkinnedMesh, Bone, Vector3, Mesh, Material, Shader } from "three"
 import { createNoise4D } from "simplex-noise";
+import { useProgress } from '@react-three/drei';
+
+export const Loader = ({ setIsLoaded }: { setIsLoaded: (boolean: boolean) => void }) => {
+    const { progress } = useProgress();
+
+    useEffect(() => {
+        if (progress >= 100) {
+            setIsLoaded(true)
+        }
+        console.log(progress)
+    }, [progress, setIsLoaded])
+
+    return (
+        <></>
+    )
+}
 
 export default function HomepageScene() {
     const lightRef = useRef<Object3D<Object3DEventMap>>() as MutableRefObject<Object3D<Object3DEventMap>>;
@@ -16,7 +32,7 @@ export default function HomepageScene() {
     const bonesRestPos = useRef<{ x: number, y: number, z: number }[]>();
     const bonesRestRot = useRef<{ x: number, y: number, z: number }[]>();
     const bonesMaxMinCoords = useRef<{ max: number; min: number }>();
-    const materials = useRef<Material[]>([])
+    const materials = useRef<Material[]>([]);
 
     useEffect(() => {
         scene.matrixAutoUpdate = true;
@@ -90,7 +106,6 @@ export default function HomepageScene() {
         // scene.add(skeletonHelper)
         bonesRestPos.current = bonePos;
         bonesRestRot.current = boneRot;
-        console.log('rerender')
     }, [scene, gltf])
 
     console.log(materials);
@@ -135,8 +150,8 @@ export default function HomepageScene() {
                 // material.userData.uTime.value = Date.now();
                 // // console.log(material.userData);
                 // material.needsUpdate = true;
-            })
-        } 
+            });
+        }
     })
 
 
