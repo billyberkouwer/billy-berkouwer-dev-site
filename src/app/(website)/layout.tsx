@@ -12,7 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
         </ThemeProvider>
       </body>
