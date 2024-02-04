@@ -10,8 +10,6 @@ import { fadeRiseAnimation } from "@/lib/framer/Animations";
 export default function NavbarLayout() {
     const { isDarkTheme } = useContext(ThemeContext);
 
-    console.log(isDarkTheme)
-
     return (
         <motion.div variants={fadeRiseAnimation} initial="hidden" animate="visible" className={`container__navbar ${isDarkTheme ? 'dark-theme' : ''}`}>
             <motion.li className="link__navbar" variants={fadeRiseAnimation}><Link href={'/'}>Home</Link></motion.li>

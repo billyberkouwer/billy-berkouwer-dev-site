@@ -1,9 +1,9 @@
 'use client'
 
 import { Canvas } from "@react-three/fiber"
-import HomepageScene, { Loader } from "../Three/HomepageScene"
+import HomepageScene from "../Three/HomepageScene"
 import "./homepage.scss";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HomeLayout() {
     const [isSceneVisible, setIsSceneVisible] = useState(false);
@@ -11,7 +11,7 @@ export default function HomeLayout() {
     useEffect(() => {
         const fade = setTimeout(() => {
             setIsSceneVisible(true);
-        }, 3000);
+        }, 1000);
 
         return () => {
             clearTimeout(fade);
