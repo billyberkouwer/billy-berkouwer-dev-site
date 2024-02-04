@@ -19,6 +19,7 @@ import {
   DoubleSide,
   MeshPhysicalMaterial,
   BufferAttribute,
+  TextureLoader
 } from "three";
 import { createNoise4D } from "simplex-noise";
 import { useProgress } from "@react-three/drei";
@@ -63,11 +64,14 @@ export default function HomepageScene() {
   const materials = useRef<Material[]>([]);
 
   useEffect(() => {
-    const geo = new SphereGeometry(10, 32, 64);
+    const geo = new SphereGeometry(100, 32, 64);
     const mat = new MeshPhysicalMaterial({
-      color: "red",
       transmission: 0.2,
     });
+
+    new TextureLoader().load('/bgColorMap.jpg', (tex) => {
+      mat.map = tex;
+    })
 
     function customBackground(shader: Shader) {
       console.log(shader);
@@ -176,14 +180,14 @@ export default function HomepageScene() {
     <>
       <primitive object={gltf.scene} />
       {circle ? <primitive object={circle} /> : null}
-      <pointLight intensity={8} position={[1, 6, 5]} />
+      <pointLight intensity={80} position={[1, 6, 5]} />
       <pointLight
         ref={(el) => (el ? (lightRef.current = el) : null)}
         intensity={4}
         position={[0, 4, 2.5]}
       />
       <ambientLight intensity={1} />
-      <OrbitControls />
+      <OrbitControls maxDistance={20} minDistance={2}/>
     </>
   );
 }

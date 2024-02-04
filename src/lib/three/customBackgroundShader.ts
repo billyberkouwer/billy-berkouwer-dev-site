@@ -201,8 +201,9 @@ varying vec3 vViewPosition;
 #include <clipping_planes_pars_fragment>
 void main() {
 	#include <clipping_planes_fragment>
-	float perlinNoise = cnoise(vWorldPosition);
-	vec4 diffuseColor = vec4( diffuse * perlinNoise, opacity );
+	float perlinNoise = cnoise(vWorldPosition / 10.);
+	float distortedPerlin = cnoise(vec3(perlinNoise));
+	vec4 diffuseColor = vec4( diffuse - 0.75 + distortedPerlin, opacity );
 	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
 	vec3 totalEmissiveRadiance = emissive;
 	#include <logdepthbuf_fragment>
