@@ -1,0 +1,22 @@
+.wrapper__pan-layout {
+    display: block;
+    position: fixed;
+    min-width: 0;
+    min-height: 0;
+    cursor: grab;
+}
+
+.pan-layout__row {
+    margin-bottom: 0.2rem;
+    background-color: lightblue;
+}
+
+.pan-layout__column {
+    display: inline;
+    background-color: red;
+    font-size: 2rem;
+    min-width: 10rem;
+    min-height: 10rem;
+    margin-right: 0.2rem;
+    // width: 100%;
+}
