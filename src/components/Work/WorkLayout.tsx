@@ -47,9 +47,6 @@ export default function WorkLayout() {
         x: x - mouseDownPosition.x + panWrapperPosition.x,
         y: y - mouseDownPosition.y + panWrapperPosition.y,
       };
-      console.log(x, y);
-      console.log("mouseDown", mouseMoveDistance);
-      console.log("wrapperPos", panWrapperPosition);
       panWrapperRef.current.style.top = mouseMoveDistance.y + "px";
       panWrapperRef.current.style.left = mouseMoveDistance.x + "px";
     }

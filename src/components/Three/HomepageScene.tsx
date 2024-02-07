@@ -181,7 +181,6 @@ export default function HomepageScene() {
     if (bgMaterials.current) {
       bgMaterials.current.forEach((material) => {
         const uTime = material.userData.shader?.uniforms?.uTime;
-        console.log(uTime)
         if (uTime) {
           uTime.value = performance.now() / 5000;
         }

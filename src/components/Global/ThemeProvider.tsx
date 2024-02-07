@@ -16,7 +16,7 @@ export const ThemeContext = createContext<{
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
     const pathname = usePathname();
-    const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const [isDarkTheme, setIsDarkTheme] = useState(true);
 
     useEffect(() => {
         let isDarkPage = false;
