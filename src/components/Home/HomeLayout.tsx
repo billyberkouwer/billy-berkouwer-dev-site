@@ -9,7 +9,9 @@ export default function HomeLayout() {
   const [isSceneVisible, setIsSceneVisible] = useState(false);
 
   useEffect(() => {
-    setIsSceneVisible(true);
+    setTimeout(() => {
+      setIsSceneVisible(true);
+    }, 500);
   }, []);
 
   return (

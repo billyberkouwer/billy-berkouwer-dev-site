@@ -62,6 +62,7 @@ export default function HomepageScene() {
   const bonesRestRot = useRef<{ x: number; y: number; z: number }[]>();
   const bonesMaxMinCoords = useRef<{ max: number; min: number }>();
   const materials = useRef<Material[]>([]);
+  const bgMaterials = useRef<Material[]>([]);
 
   useEffect(() => {
     const geo = new SphereGeometry(100, 32, 64);
@@ -70,15 +71,18 @@ export default function HomepageScene() {
     });
 
     new TextureLoader().load('/bgColorMap.jpg', (tex) => {
+      mat.emissiveMap = tex;
       mat.map = tex;
     })
 
     function customBackground(shader: Shader) {
-      console.log(shader);
+      shader.uniforms.uTime = { value: Date.now() };
       shader.fragmentShader = backgroundFragmentShader;
       shader.vertexShader = backgroundVertexShader;
+      mat.userData.shader = shader;
     }
     mat.onBeforeCompile = customBackground;
+    bgMaterials.current.push(mat);
     const mesh = new Mesh(geo, mat);
     mat.side = DoubleSide;
     setCircle(mesh);
@@ -171,6 +175,15 @@ export default function HomepageScene() {
         const uTime = material.userData.shader?.uniforms?.uTime;
         if (uTime) {
           uTime.value = performance.now() / 1000;
+        }
+      });
+    }
+    if (bgMaterials.current) {
+      bgMaterials.current.forEach((material) => {
+        const uTime = material.userData.shader?.uniforms?.uTime;
+        console.log(uTime)
+        if (uTime) {
+          uTime.value = performance.now() / 5000;
         }
       });
     }

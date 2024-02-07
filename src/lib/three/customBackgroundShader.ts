@@ -129,6 +129,7 @@ uniform vec3 emissive;
 uniform float roughness;
 uniform float metalness;
 uniform float opacity;
+uniform float uTime;
 #ifdef IOR
 	uniform float ior;
 #endif
@@ -201,7 +202,7 @@ varying vec3 vViewPosition;
 #include <clipping_planes_pars_fragment>
 void main() {
 	#include <clipping_planes_fragment>
-	float perlinNoise = cnoise(vWorldPosition / 10.);
+	float perlinNoise = cnoise(vec3(vWorldPosition.x / 10.  - uTime,  vWorldPosition.y / 10.  - uTime, vWorldPosition.z / 10.  - uTime));
 	float distortedPerlin = cnoise(vec3(perlinNoise));
 	vec4 diffuseColor = vec4( diffuse - 0.75 + distortedPerlin, opacity );
 	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
