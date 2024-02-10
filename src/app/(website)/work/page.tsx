@@ -1,7 +1,7 @@
 import WorkLayout from "@/components/Work/WorkLayout";
-import { redirect } from "next/navigation";
+import { logoLocations } from "@/lib/locations/logos";
 
 export default function WorkPage() {
-    redirect('/')
-    return <WorkLayout />
+
+    return <WorkLayout logos={logoLocations} />
 }

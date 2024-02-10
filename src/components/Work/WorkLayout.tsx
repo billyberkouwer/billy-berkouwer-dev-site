@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./work-page.scss";
 import useMousePosition from "@/hooks/useMousePosition";
+import { WorkData } from "@/lib/types/main";
+import Image from "next/image";
 
-export default function WorkLayout() {
+export default function WorkLayout({logos}: WorkData) {
   const panWrapperRef = useRef<HTMLElement>();
   const [isTouched, setIsTouched] = useState(false);
   const { x, y } = useMousePosition();
@@ -58,6 +60,13 @@ export default function WorkLayout() {
       className="wrapper__pan-layout"
     >
       <div className="pan-layout__row">
+        {logos.map((logo) => {
+          return (
+            <div key={logo.path} className="pan-layout__column">
+              <Image onDragStart={(e) => e.preventDefault()} alt={logo.name} src={logo.path} width={1000} height={500} className="client-image" />
+            </div>
+          )
+        })}
         <div className="pan-layout__column">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda
           labore sint voluptatibus ab quo quia quae fuga corporis distinctio eos
