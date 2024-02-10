@@ -128,7 +128,8 @@
 }
 
 .button__info-box {
-    align-self: center;
+    align-self: flex-end;
+    padding: 0.25rem !important;
 }
 
 .expander {
