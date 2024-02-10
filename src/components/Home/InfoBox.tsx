@@ -27,7 +27,7 @@ export default function InfoBox() {
             <a href="mailto:billy@ocove.studio"> contact me here</a>{" "}
           </p>
           <ul className="list__social-links">
-            <li><a href="https://www.linkedin.com/in/billy-myles-berkouwer-229679222/">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/billyberkouwer">LinkedIn</a></li>
             <li><a href="https://www.instagram.com/billyberkouwer/">Instagram</a></li>
             <li><a href="https://github.com/billyberkouwer">GitHub</a></li>
           </ul>
