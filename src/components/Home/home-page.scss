@@ -118,12 +118,21 @@
     margin: 1rem;
     z-index: 1;
     background-color: rgba(0,0,0,0.6);
-    max-width: 30rem;
+    width: auto;
+    max-width: 50rem;
     padding: 1rem;
     border: 0.5px solid white;
 
     p {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
+
+        @include sm {
+            font-size: 1.6rem;
+        }
+
+        @include md {
+            font-size: 1.7rem;
+        }
     }
 }
 
@@ -145,6 +154,7 @@
     opacity: 0;
     transition: visibility $slow, opacity $slow;
     visibility: hidden;
+    overflow: hidden;
 }
 
 .expander.expanded {
