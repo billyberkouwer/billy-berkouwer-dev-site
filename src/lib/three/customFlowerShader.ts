@@ -100,7 +100,12 @@ void main() {
 	#include <skinnormal_vertex>
 	#include <defaultnormal_vertex>
 	#include <normal_vertex>
-	vec3 transformed = vec3( position.x, position.y + cnoise(position / 5. + uTime / 3.) / 20. - 0.5, position.z);
+	float constantMovement = cnoise(vec3(uTime)) * (position.y + 14.) / 10. - 0.5;
+	vec3 transformed = vec3( 
+		position.x + constantMovement, 
+		position.y + (cnoise(position / 15. + uTime) - 0.5) + ((cnoise(position + uTime) - 0.5)/20.), 
+		position.z
+	);
 
 	#ifdef USE_ALPHAHASH
 	

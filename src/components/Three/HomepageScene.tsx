@@ -53,9 +53,9 @@ export default function HomepageScene() {
   const lightRef = useRef<Object3D<Object3DEventMap>>() as MutableRefObject<
     Object3D<Object3DEventMap>
   >;
-  const noise = createNoise4D();
+  // const noise = createNoise4D();
   const { scene, clock } = useThree();
-  const gltf = useGLTF("/gltf/plant-2-bake-bones.gltf");
+  const gltf = useGLTF("/three/flower.glb");
   const [circle, setCircle] = useState<Mesh>();
   const bonesRef = useRef<Bone[]>();
   const bonesRestPos = useRef<{ x: number; y: number; z: number }[]>();
@@ -111,73 +111,74 @@ export default function HomepageScene() {
         materials.current.push(material);
       }
     });
-    const skeletonHelper = new SkeletonHelper(gltf.scene);
-    const bones = skeletonHelper.bones;
-    const bonePos = bones.map((bone) => ({
-      x: +bone.position.x,
-      y: +bone.position.y,
-      z: +bone.position.z,
-    }));
-    const boneRot = bones.map((bone) => ({
-      x: +bone.rotation.x,
-      y: +bone.rotation.y,
-      z: +bone.rotation.z,
-    }));
-    const sortedCoords = Array.from(bonePos).sort((a, b) => a.y - b.y);
-    const maxMinBonePos = {
-      max: sortedCoords[sortedCoords.length - 1].y,
-      min: sortedCoords[0].y,
-    };
-    bonesMaxMinCoords.current = maxMinBonePos;
-    bonesRef.current = bones;
-    bonesRestPos.current = bonePos;
-    bonesRestRot.current = boneRot;
+    // const skeletonHelper = new SkeletonHelper(gltf.scene);
+    // const bones = skeletonHelper.bones;
+    // const bonePos = bones.map((bone) => ({
+    //   x: +bone.position.x,
+    //   y: +bone.position.y,
+    //   z: +bone.position.z,
+    // }));
+    // const boneRot = bones.map((bone) => ({
+    //   x: +bone.rotation.x,
+    //   y: +bone.rotation.y,
+    //   z: +bone.rotation.z,
+    // }));
+    // const sortedCoords = Array.from(bonePos).sort((a, b) => a.y - b.y);
+    // const maxMinBonePos = {
+    //   max: sortedCoords[sortedCoords.length - 1].y,
+    //   min: sortedCoords[0].y,
+    // };
+    // bonesMaxMinCoords.current = maxMinBonePos;
+    // bonesRef.current = bones;
+    // bonesRestPos.current = bonePos;
+    // bonesRestRot.current = boneRot;
     // scene.add(skeletonHelper)
   }, [scene, gltf]);
 
   useFrame(() => {
-    const bones = bonesRef.current;
-    const bonesPos = bonesRestPos.current;
-    const bonesRot = bonesRestRot.current;
-    const maxMinCoords = bonesMaxMinCoords.current;
+    // const bones = bonesRef.current;
+    // const bonesPos = bonesRestPos.current;
+    // const bonesRot = bonesRestRot.current;
+    // const maxMinCoords = bonesMaxMinCoords.current;
 
-    if (bones && bonesPos && maxMinCoords && bonesRot) {
-      bones.forEach((bone, i) => {
-        const bonePosFactor =
-          adjust(bone.position.x, maxMinCoords.min, maxMinCoords.max, 0, 3) +
-          2.5;
-        const displacementFactor = bonePosFactor / 50;
-        const currentBoneRot = bonesRot[i];
-        const time = clock.elapsedTime / 8;
-        const noiseScale = 8;
-        const noiseVal =
-          noise(
-            currentBoneRot.x * noiseScale + time,
-            currentBoneRot.y * noiseScale + time,
-            currentBoneRot.z * noiseScale + time,
-            time
-          ) * displacementFactor;
+    // if (bones && bonesPos && maxMinCoords && bonesRot) {
+    //   bones.forEach((bone, i) => {
+    //     const bonePosFactor =
+    //       adjust(bone.position.x, maxMinCoords.min, maxMinCoords.max, 0, 3) +
+    //       2.5;
+    //     const displacementFactor = bonePosFactor / 120;
+    //     const currentBoneRot = bonesRot[i];
+    //     const time = clock.elapsedTime / 8;
+    //     const noiseScale = 8;
+    //     const noiseVal =
+    //       noise(
+    //         currentBoneRot.x * noiseScale + time,
+    //         currentBoneRot.y * noiseScale + time,
+    //         currentBoneRot.z * noiseScale + time,
+    //         time
+    //       ) * displacementFactor;
 
-        const newRotation = {
-          x: currentBoneRot.x + noiseVal,
-          y: currentBoneRot.y + noiseVal,
-          z: currentBoneRot.z + noiseVal,
-        };
-        bone.rotation.set(newRotation.x, newRotation.y, newRotation.z);
-        bone.matrixWorldNeedsUpdate = true;
-        bone.updateMatrix();
-        bone.updateMatrixWorld();
-      });
-    }
+    //     const newRotation = {
+    //       x: currentBoneRot.x + noiseVal,
+    //       y: currentBoneRot.y + noiseVal,
+    //       z: currentBoneRot.z + noiseVal,
+    //     };
+    //     bone.rotation.set(newRotation.x, newRotation.y, newRotation.z);
+    //     bone.matrixWorldNeedsUpdate = true;
+    //     bone.updateMatrix();
+    //     bone.updateMatrixWorld();
+    //   });
+    // }
 
     if (materials.current) {
       materials.current.forEach((material) => {
         const uTime = material.userData.shader?.uniforms?.uTime;
         if (uTime) {
-          uTime.value = performance.now() / 1000;
+          uTime.value = performance.now() / 5000;
         }
       });
     }
+
     if (bgMaterials.current) {
       bgMaterials.current.forEach((material) => {
         const uTime = material.userData.shader?.uniforms?.uTime;
