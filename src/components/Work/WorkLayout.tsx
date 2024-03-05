@@ -6,7 +6,7 @@ import useMousePosition from "@/hooks/useMousePosition";
 import { WorkData } from "@/lib/types/main";
 import Image from "next/image";
 
-export default function WorkLayout({logos}: WorkData) {
+export default function WorkLayout({ logos }: WorkData) {
   const panWrapperRef = useRef<HTMLElement>();
   const [isTouched, setIsTouched] = useState(false);
   const { x, y } = useMousePosition();
@@ -15,10 +15,14 @@ export default function WorkLayout({logos}: WorkData) {
 
   useEffect(() => {
     if (panWrapperRef.current) {
-      panWrapperRef.current.style.minWidth = panWrapperRef.current.clientWidth + 'px';
-      panWrapperRef.current.style.maxWidth = panWrapperRef.current.clientWidth + 'px';
-      panWrapperRef.current.style.minHeight = panWrapperRef.current.clientHeight + 'px';
-      panWrapperRef.current.style.maxHeight = panWrapperRef.current.clientHeight + 'px';
+      panWrapperRef.current.style.minWidth =
+        panWrapperRef.current.clientWidth + "px";
+      panWrapperRef.current.style.maxWidth =
+        panWrapperRef.current.clientWidth + "px";
+      panWrapperRef.current.style.minHeight =
+        panWrapperRef.current.clientHeight + "px";
+      panWrapperRef.current.style.maxHeight =
+        panWrapperRef.current.clientHeight + "px";
     }
     window.addEventListener("mousedown", (e) => {
       if (panWrapperRef.current) {
@@ -63,9 +67,16 @@ export default function WorkLayout({logos}: WorkData) {
         {logos.map((logo) => {
           return (
             <div key={logo.path} className="pan-layout__column">
-              <Image onDragStart={(e) => e.preventDefault()} alt={logo.name} src={logo.path} width={1000} height={500} className="client-image" />
+              <Image
+                onDragStart={(e) => e.preventDefault()}
+                alt={logo.name}
+                src={logo.path}
+                width={1000}
+                height={500}
+                className="client-image"
+              />
             </div>
-          )
+          );
         })}
         <div className="pan-layout__column">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda

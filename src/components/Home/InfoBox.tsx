@@ -13,9 +13,8 @@ export default function InfoBox() {
       <div className={`expander ${isInfoBoxOpen ? "expanded" : ""}`}>
         <div className={`expander-content ${isInfoBoxOpen ? "expanded" : ""}`}>
           <p>
-            Billy Myles-Berkouwer is a full-stack web developer and 3D artist.
-            He specialises in producing 3D web projects for clients in arts and
-            business sectors.
+            Billy Myles-Berkouwer is a full-stack web developer, visual artist, and technical lead for 3D web projects for clients in commercial and arts sectors. 
+            With strong interpersonal and technical skills, he is comfortable working across various project phases, including art direction, 3D design, and front-end and back-end web development.
           </p>
           <p>
             About the flower - I modelled and procedurally textured this flower
